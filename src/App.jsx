@@ -5,6 +5,7 @@ import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "./components/ImageModal/ImageModal";
 import { requestImagesByQuery } from "./components/services/api";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [modalImage, setModalImage] = useState(null);
 
   useEffect(() => {
     if (!query) return;
@@ -51,12 +53,21 @@ function App() {
     }
   };
 
+  const openModal = (image) => {
+    setModalImage(image);
+  };
+
+  const closeModal = () => {
+    setModalImage(null);
+  };
+
   return (
     <>
       <SearchBar onSetSearchQuery={onSetSearchQuery} />
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
-      <ImageGallery images={images} />
+      <ImageGallery images={images} onImageClick={openModal} />
+      {modalImage && <ImageModal image={modalImage} onClose={closeModal} />}
       {page < totalPages && <LoadMoreBtn onClick={loadMore} />}
     </>
   );

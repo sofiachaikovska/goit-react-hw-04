@@ -3,7 +3,7 @@ import css from "./ImageModal.module.css";
 
 Modal.setAppElement("#root");
 
-const ImageModal = ({ image, isOpen, onClose }) => {
+const ImageModal = ({ image, onClose }) => {
   if (!image) return null;
 
   const handleOverlayClick = (event) => {
@@ -14,7 +14,7 @@ const ImageModal = ({ image, isOpen, onClose }) => {
 
   return (
     <Modal
-      isOpen={isOpen}
+      isOpen={!!image}
       onRequestClose={onClose}
       overlayClassName={css.modalOverlay}
       className={css.modalContent}
