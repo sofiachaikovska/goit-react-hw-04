@@ -1,0 +1,20 @@
+.loadMoreBtnContainer {
+  text-align: center;
+}
+
+.loadMoreBtn {
+  padding: 5px 40px;
+  font-size: medium;
+  background-color: rgb(45, 64, 138);
+  color: white;
+  border: none;
+  border-radius: 3px;
+
+  transition: background-color 0.3s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.loadMoreBtn:hover {
+  background-color: rgb(38, 55, 121);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
